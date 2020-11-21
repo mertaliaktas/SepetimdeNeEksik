@@ -14,7 +14,7 @@ Programlama dili olarak Java, IDE ise Eclipse kullanılacaktır. Görsel arayüz
 
 ### İş Bölümü Planlama
 
-![sema1](https://i.hizliresim.com/hggkjr.png)
+![sema1](https://i.hizliresim.com/XlTxAI.png)
 
 ### Hedeflenen Çıktılar
 
