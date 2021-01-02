@@ -4,7 +4,7 @@ FP Tree Ağacının Oluşturulması, Barkod Mobil Uygulamasının Hazırlanması
 ![sema1](https://i.hizliresim.com/V7s5hr.png)
 
 ## Kaynaklar
-
+FP Tree ağacını oluşturmak için alttaki github reposu kullanılmıştır.
 Faydalanılan kaynak: https://github.com/goodinges/FP-Growth-Java 
 
 ## Zorluklar
