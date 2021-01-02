@@ -11,5 +11,6 @@ Faydalanılan kaynak: https://github.com/goodinges/FP-Growth-Java
 Map değişken türünün nasıl kullanıldığı ve içerisindeki verilere nasıl ulaşıldığı öğrenildi. Ağaçtaki verileri sıralamak için Comparator sınıfından implemente edilen frequencyComparitor.java sınıfının yaptığı iş ve önemi öğrenildi. Bu sınıf sayesinde ağaçtaki verileri sıralamak için bir kural oluşturulmuş oldu. Sıralama, Map içindeki verilerin count sayılarına göre yapıldı.
 
 ## Araçlar
+Bu aşamaya kadar kullanılan program Eclipse IDE ve kullanılan programlama dili java dır.
 
 ## İş Dağılımı
