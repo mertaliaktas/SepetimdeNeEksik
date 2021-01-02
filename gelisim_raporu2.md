@@ -8,7 +8,7 @@ FP Tree ağacını oluşturmak için alttaki github reposu kullanılmıştır.
 Faydalanılan kaynak: https://github.com/goodinges/FP-Growth-Java 
 
 ## Zorluklar
-MAP değişken türünün nasıl kullanıldığı ve içerisindeki verilere nasıl ulaşıldığı öğrenildi. Ağaçtaki verileri sıralamak için Comparator sınıfından implemente edilen frequencyComparitor.java sınıfı öğrenildi. Bu sınıf sayesinde ağaçtaki verileri sıralamak için bir kural oluşturulmuş oldu. Bu sıralamada MAP içindeki verilerin count sayılarına göre sıralama yapılmıştır.
+Map değişken türünün nasıl kullanıldığı ve içerisindeki verilere nasıl ulaşıldığı öğrenildi. Ağaçtaki verileri sıralamak için Comparator sınıfından implemente edilen frequencyComparitor.java sınıfının yaptığı iş ve önemi öğrenildi. Bu sınıf sayesinde ağaçtaki verileri sıralamak için bir kural oluşturulmuş oldu. Sıralama, Map içindeki verilerin count sayılarına göre yapıldı.
 
 ## Araçlar
 
