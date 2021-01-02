@@ -14,3 +14,8 @@ Map değişken türünün nasıl kullanıldığı ve içerisindeki verilere nas�
 Bu aşamaya kadar kullanılan program Eclipse IDE ve kullanılan programlama dili Java dır.
 
 ## İş Dağılımı
+
+|       Üyeler       | FP Tree Ağacının Oluşturulması | Sepet Tahmin Algoritmasının Oluşturulması |
+|:------------------:|:------------------------------:|:-----------------------------------------:|
+| Mert Ali Aktaş     |        12 Saat (%54,54)        |                2 Saat (%50)               |
+| Mehmet Akif Çelebi |        10 Saat (%45,46)        |                2 Saat (%50)               |
