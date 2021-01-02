@@ -15,7 +15,7 @@ Bu aşamaya kadar kullanılan program Eclipse IDE ve kullanılan programlama dil
 
 ## İş Dağılımı
 
-|       Üyeler       | FP Tree Ağacının Oluşturulması | Sepet Tahmin Algoritmasının Oluşturulması |
-|:------------------:|:------------------------------:|:-----------------------------------------:|
-| Mert Ali Aktaş     |        12 Saat (%54,54)        |                2 Saat (%50)               |
-| Mehmet Akif Çelebi |        10 Saat (%45,46)        |                2 Saat (%50)               |
+|       Üyeler       | FP Tree Ağacının Oluşturulması | Sepet Tahmin Algoritmasının Oluşturulması | Toplam           |
+|:------------------:|:------------------------------:|:-----------------------------------------:|------------------|
+| Mert Ali Aktaş     |        12 Saat (%54,54)        |                2 Saat (%50)               | 14 Saat (%53,84) |
+| Mehmet Akif Çelebi |        10 Saat (%45,46)        |                2 Saat (%50)               | 12 Saat (%46,16) |
