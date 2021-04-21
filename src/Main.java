@@ -25,7 +25,8 @@ import java.util.Vector;
 public class Main {
 
 	static int threshold; // Min Destek sayisi
-	static String file = "kayıtlistesi.txt"; // Kullanilacak veriler. Dosya, proje dosyasinin direk icinde olmalidir. 
+	static String file = "chess.txt"; // Kullanilacak veriler. Dosya, proje dosyasinin direk icinde olmalidir. 
+	//static String specialFile = "ozelKayitListesi.txt";
 	static String specialFile = "ozelKayitListesi.txt";
 	static FPGrowth fpGrowth;
 	
@@ -44,7 +45,7 @@ public class Main {
 		
 		createSpecialDatabase(file, input);
 		
-		fpGrowth = new FPGrowth(new File(specialFile), threshold);
+		fpGrowth = new FPGrowth(new File(file), threshold);
 		
 		printFrequentPatterns();
 		
@@ -63,7 +64,7 @@ public class Main {
 	
 	private static void createSpecialDatabase(String file2, String[] input) {
 		String special_filename = "ozelKayitListesi.txt";
-		String filename = "kayıtlistesi.txt";
+		String filename = file2;
 		FileWriter specialFileWriter;
 		FileReader specialFileReader;
 		try {
@@ -102,8 +103,18 @@ public class Main {
 		return flag;
 	}
 
-	private static void findConfidence(ArrayList<String> inputList,String input) {
+	private static String findConfidence(ArrayList<String> inputList,String input) {
 		//int inputSupp = fpGrowth.frequentPatterns.get(input);
+		
+		ArrayList<String> myList = new ArrayList<String>();
+		myList.add("6");
+		myList.add("7");
+		
+		String bestPattern="";
+		int best=0;
+		
+		ArrayList<Integer> bestPatternsID = new ArrayList<>();
+		
 		for (Entry<String, Integer> pairs : fpGrowth.frequentPatterns.entrySet()) {
 			//System.out.print(pairs.getKey());
 			ArrayList<String> originalList = new ArrayList<String>(Arrays.asList( pairs.getKey().split(" ")));
@@ -116,17 +127,41 @@ public class Main {
 					
 					System.out.print(originalList.get(i)+" ");
 				}
-				/*if(inputSupp>0) {
-					float conf=(float)pairs.getValue()/(float)inputSupp; 
-					System.out.println("Confidence: % "+conf*100);
-				}
-				*/
+				
+				
 				
 				System.out.print("  Supp: "+pairs.getValue()+"\n");
+				if(originalList.size()>myList.size()) {
+					bestPatternsID.add(pairs.getValue());
+
+				}
 				
 			}
 
 		}
+		Collections.sort(bestPatternsID);
+		Collections.reverse(bestPatternsID);
+		
+		
+		
+		
+		
+		
+		
+		for (Entry<String, Integer> pairs : fpGrowth.frequentPatterns.entrySet()) {
+			
+				if(pairs.getValue().equals(bestPatternsID.get(0)))
+					bestPattern=pairs.getKey();
+			
+		}
+		
+		System.out.println("\nEn iyi Pattern: "+bestPattern);
+		ArrayList<String> x = new ArrayList<String>(Arrays.asList( bestPattern.split(" ")));
+		x.removeAll(myList);
+		
+		System.out.println("En iyi ITEM_ID: "+x.get(0));
+		return x.get(0);
+		
 	}
 	
 	
