@@ -6,7 +6,7 @@ Bu aşamada Java olarak geliştirdiğimiz projeyi Android Studio'ya taşıdık. 
 
 - Programmer World. "How to create your own QR Code and Barcode scanner reader Android App?". Youtube. 26 Ocak 2020.
 - Alper Beyler. "Android ProgressDialog ve Progressbar Kullanımı". mobilhanem.com . 9 Kasım 2018.
-- Ying Wang. "Fruithut Dataset". philippe-fournier-viger.com . 2020
+- Ying Wang, Philippe Fournier-Viger, Jose Maria Luna, Jerry Chun-Wei Lin ve Sebastian Ventura. "Fruithut Dataset". philippe-fournier-viger.com . 2020
 
 ### Zorluklar
 
