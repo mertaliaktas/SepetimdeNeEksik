@@ -54,6 +54,9 @@ public class MainActivity extends Activity {
     TextView textView;
     EditText editText;
 
+    String best;
+    String message = "Esik Degerini Degistiriniz. Lutfen Yonetici Ile Iletisime Geciniz.";
+
     static List<String> myList = new ArrayList<>();
 
 
@@ -74,6 +77,8 @@ public class MainActivity extends Activity {
         editText = findViewById(R.id.threshold);
         registerForContextMenu(listView);
 
+        best = "";
+
         scan = findViewById(R.id.scan);
         scan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +90,6 @@ public class MainActivity extends Activity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, list);
         listView.setAdapter(adapter);
 
-
         calculate = findViewById(R.id.calculate);
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +98,7 @@ public class MainActivity extends Activity {
                 try {
                     if (getCount() != 0) {
 
-                        progressDialog.setMessage("Devam eden işleminiz bulunmaktadır. Lütfen bekleyiniz...");
+                        progressDialog.setMessage("Devam Eden Isleminiz Bulunmaktadır. Lütfen Bekleyiniz...");
                         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                         progressDialog.getMax();
                         progressDialog.getProgress();
@@ -152,15 +156,35 @@ public class MainActivity extends Activity {
                                         System.out.println("Ozel Dosya Hatasi :" + e.getMessage());
                                     }
 
-                                    System.out.println("header " + fpGrowth.headerTable.size());
-                                    System.out.println("fayda " + fpGrowth.frequentPatterns.entrySet());
+                                    System.out.println("Header " + fpGrowth.headerTable.size());
+                                    System.out.println("Fayda " + fpGrowth.frequentPatterns.entrySet());
 
-                                    ArrayList<String> inputList = new ArrayList<String>(Arrays.asList(input));
-                                    printHeaderTable();
-                                    String best = findConfidence(inputList, line);
+                                    if(fpGrowth.headerTable.size() == 0){
+                                        //progressDialog.dismiss();
+                                        runOnUiThread(new Runnable() {
+                                            public void run() {
+                                                Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                                            }
+                                        });
+                                    }else {
+                                        ArrayList<String> inputList = new ArrayList<String>(Arrays.asList(input));
+                                        printHeaderTable();
+                                        best = findConfidence(inputList, line);
+                                        System.out.println("Best "+ best);
+                                        String best0 = "0";
 
-                                    Intent intent = new Intent(MainActivity.this, Calculated.class);
-                                    startActivity(intent);
+                                        if(best.equals(best0)){
+                                            //progressDialog.dismiss();
+                                            runOnUiThread(new Runnable() {
+                                                public void run() {
+                                                    Toast.makeText(MainActivity.this, message, Toast.LENGTH_LONG).show();
+                                                }
+                                            });
+                                        }else {
+                                            Intent intent = new Intent(MainActivity.this, Calculated.class);
+                                            startActivity(intent);
+                                        }
+                                    }
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -168,7 +192,7 @@ public class MainActivity extends Activity {
                             }
                         }).start();
                     } else {
-                        Toast.makeText(MainActivity.this, "Ürün Listeniz Boş", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Urun Listeniz Bos", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
                     System.out.println("main " + e.getMessage());
@@ -244,21 +268,18 @@ public class MainActivity extends Activity {
                     commonList.retainAll(inputList);
 
                     if (commonList.size() == inputList.size()) {
-                        System.out.print("\nGüvenli Liste: ");
+                        System.out.print("\nGuvenli Liste: ");
                         for (int i = 0; i < originalList.size(); i++) {
-
                             System.out.print(originalList.get(i) + " ");
                         }
-				/*if(inputSupp>0) {
-					float conf=(float)pairs.getValue()/(float)inputSupp;
-					System.out.println("Confidence: % "+conf*100);
-				}
-				*/
+				        /*if(inputSupp>0) {
+					        float conf=(float)pairs.getValue()/(float)inputSupp;
+					        System.out.println("Confidence: % "+conf*100);
+				        }*/
                         System.out.print("  Supp: " + pairs.getValue() + "\n");
 
                         if (originalList.size() > myList.size()) {
                             bestPatternsID.add(pairs.getValue());
-
                         }
                     }
                 }
@@ -266,10 +287,13 @@ public class MainActivity extends Activity {
                 Collections.reverse(bestPatternsID);
 
                 for (Map.Entry<String, Integer> pairs : fpGrowth.frequentPatterns.entrySet()) {
-
-                    if (pairs.getValue().equals(bestPatternsID.get(0)))
-                        bestPattern = pairs.getKey();
-
+                    if(bestPatternsID.isEmpty()){
+                        bestPattern = "0";
+                    }
+                    else {
+                        if(pairs.getValue().equals(bestPatternsID.get(0)))
+                            bestPattern = pairs.getKey();
+                    }
                 }
 
                 System.out.println("\nEn iyi Pattern: " + bestPattern);
@@ -291,8 +315,9 @@ public class MainActivity extends Activity {
                     myList.clear();
                     list.clear();
                     textView.setText(listView.getAdapter().getCount() + " ürün");
+                    Toast.makeText(MainActivity.this, "Urun(ler) Silindi", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MainActivity.this, "Ürün Listeniz Boş", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Urun Listeniz Bos", Toast.LENGTH_SHORT).show();
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -316,8 +341,8 @@ public class MainActivity extends Activity {
                 myList.remove(menuInfo.position);
                 list.remove(menuInfo.position);
                 adapter.notifyDataSetChanged();
-                textView.setText(listView.getAdapter().getCount() + " ürün");
-                Toast.makeText(this, tv.getText().toString() + " ürün silindi!!!", Toast.LENGTH_SHORT).show();
+                textView.setText(listView.getAdapter().getCount() + " Urun");
+                Toast.makeText(this, tv.getText().toString() + " Urun Silindi", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.giveup:
                 return true;
@@ -332,7 +357,7 @@ public class MainActivity extends Activity {
         integrator.setCaptureActivity(CaptureAct.class);
         integrator.setOrientationLocked(false);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
-        integrator.setPrompt("Tarama Yapılıyor");
+        integrator.setPrompt("Tarama Yapiliyor");
         integrator.initiateScan();
     }
 
@@ -359,13 +384,13 @@ public class MainActivity extends Activity {
                             myList.add(sutun[1]);
                             list.add(sutun[2]);
                             adapter.notifyDataSetChanged();
-                            textView.setText(listView.getAdapter().getCount() + " ürün");
+                            textView.setText(listView.getAdapter().getCount() + " Urun");
                             mLine = null;
                         } else if (!mLine.isEmpty()) {
                             mLine = reader.readLine();
                         } else {
                             mLine = null;
-                            Toast.makeText(this, "Taratılan ürün veritabanında yok !!!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "Taratilan Urun Veritabaninda Yok", Toast.LENGTH_LONG).show();
                         }
                     }
                 } catch (IOException e) {
@@ -380,7 +405,7 @@ public class MainActivity extends Activity {
                     }
                 }
             } else {
-                Toast.makeText(this, "Tarama Yapmadınız !!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Tarama Yapmadiniz", Toast.LENGTH_LONG).show();
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
